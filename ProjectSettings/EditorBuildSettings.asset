@@ -5,7 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Scene0.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Scene00_Main.unity
+    guid: 83bb4275eb8ed95479f661657ae12cb5
+  - enabled: 1
+    path: Assets/Scenes/Scene01_ItemAR.unity
+    guid: 4ef95e04ad2dadc45b9c44dee1b762c8
+  - enabled: 1
+    path: Assets/Scenes/Scene02_MonsterAR.unity
+    guid: 41c3df7e6a01b1244ab9fcd54fae9429
+  - enabled: 1
+    path: Assets/Scenes/Scene03_Inventory.unity
+    guid: d5aaed36df70fb54b99f0945e57c6f38
+  - enabled: 1
+    path: Assets/Scenes/Scene04_MonsterList.unity
+    guid: df054f15042ec134dadbb1b20b994f75
   m_configObjects: {}

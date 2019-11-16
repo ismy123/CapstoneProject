@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class StepCounter : MonoBehaviour
 {
-
-   public GameObject goal;
    public Text StepCount;
+   public int range;
 
 
     [Header("Pedometer")]
@@ -30,8 +30,11 @@ public class StepCounter : MonoBehaviour
 
     void Start()
     {
-      
+      StepManager.Instance.ButtonClick();
+      Debug.Log (range);
     }
+
+
 
     void Awake()
     {
@@ -73,7 +76,7 @@ public class StepCounter : MonoBehaviour
                 // Only goes to high, if the Input is higher than the highLimit.
                 stateHigh = true;
                 steps++; // Counts the steps when the comparator goes to high.
-                StepCount.text = "Steps: " + steps + " / " + goal ;
+                StepCount.text = "Steps: " + steps + " / " + range ;
             }
         }
         else

@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class StepCounter : MonoBehaviour
+public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크립트
 {
    public Text StepCount;
-   public int Step;
 
 
     [Header("Pedometer")]
@@ -30,8 +29,7 @@ public class StepCounter : MonoBehaviour
 
     void Start()
     {
-      StepManager.Instance.Send(Step);
-      Debug.Log (Step);
+       
     }
 
 
@@ -43,8 +41,8 @@ public class StepCounter : MonoBehaviour
     }
 
 
-    void Update()
-    {
+    // void Update()
+    // {
         //UpdateElapsedWalkingTime(); // Updates the time you spend while walking.
         //WalkingCheck(); // Checks if you are walking or not.
 
@@ -58,6 +56,11 @@ public class StepCounter : MonoBehaviour
         // {
         //     walkingText.text = ("Cheer Up!");
         // }
+    // }
+
+    void Update()
+    {
+        StepCount.text = "Steps: " + steps + " / " + Singleton.Instance.step ; // 싱글톤쓸때 이런식으로 쓰면 됌
     }
 
     void FixedUpdate()
@@ -76,7 +79,7 @@ public class StepCounter : MonoBehaviour
                 // Only goes to high, if the Input is higher than the highLimit.
                 stateHigh = true;
                 steps++; // Counts the steps when the comparator goes to high.
-                StepCount.text = "Steps: " + steps + " / " + Step ;
+                // StepCount.text = "Steps: " + steps + " / " + Singleton.Instance.step ;
             }
         }
         else

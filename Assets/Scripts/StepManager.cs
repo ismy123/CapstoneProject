@@ -5,81 +5,100 @@ using UnityEngine.UI;
 
 public class StepManager : MonoBehaviour
 {
-    private static StepManager instance;
-
-    public static StepManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new StepManager();
-            }
-
-            return instance;
-        }
-    }
-    // public int range;
-    private int Step;
-    private int range;
     public Button Range1Btn;
     public Button Range2Btn;
     public Button Range3Btn;
     public Button NoRangeBtn;
-    
+
+    void Start()
+    {
         
-    public void ButtonClick(int range)
+    }
+
+    // void Update()
+    // {
+    //     if (Range1Btn == true)
+    //     {
+    //         Singleton.Instance.step = 1000;
+    //         Debug.Log(1000);
+    //     }
+
+    //     else if (Range2Btn == true)
+    //     {
+    //         Singleton.Instance.step = 1500;
+    //         Debug.Log(1500);
+    //     }
+
+    //     else if (Range3Btn == true)
+    //     {
+    //         Singleton.Instance.step = 2000;
+    //         Debug.Log(2000);
+    //     }
+
+    //     else if (NoRangeBtn == true)
+    //     {
+    //         Singleton.Instance.step = 0;
+    //         Debug.Log(00);
+    //     }
+    // }
+
+    public void ClickedButton1()
     {
-        Step = range;
-        Range1Btn = this.transform.GetComponent<Button>();
-        Range1Btn.onClick.AddListener(Range1);
+        Singleton.Instance.step = 1000;
+        Debug.Log(1000);
+    }
 
-        Range2Btn = this.transform.GetComponent<Button>();
-        Range2Btn.onClick.AddListener(Range2);
+    public void ClickedButton2()
+    {
+        Singleton.Instance.step = 1500;
+        Debug.Log(1500);
+    }
 
-        Range3Btn = this.transform.GetComponent<Button>();
-        Range3Btn.onClick.AddListener(Range3);
+    public void ClickedButton3()
+    {
+        Singleton.Instance.step = 2000;
+        Debug.Log(2000);
+    }
 
-        NoRangeBtn = this.transform.GetComponent<Button>();
-        NoRangeBtn.onClick.AddListener(Range4);
+    public void ClickedButton4()
+    {
+        Singleton.Instance.step = 00;
+        Debug.Log(00);
+    }
 
-        // if (Instance == null)
+
+ 
+    // public void ButtonClick()
+    // {
+        // Range1Btn = this.transform.GetComponent<Button>();
+        // Range2Btn = this.transform.GetComponent<Button>();
+        // Range3Btn = this.transform.GetComponent<Button>();
+        // NoRangeBtn = this.transform.GetComponent<Button>();
+
+        // if (Range1Btn = true)
         // {
-        //     instance = this;
-        //     Step = range;
+        //     Singleton.Instance.step = 1000;
+        //     Debug.Log(1000);
         // }
 
-        // else if (instance != this)
+        // if (Range2Btn = true)
         // {
-        //     Destroy(this.gameObject);
+        //     Singleton.Instance.step = 1500;
+        //     Debug.Log(1500);
         // }
 
-    void Range1()
-    {
-        range = 1000;
-    }
+        // if (Range3Btn = true)
+        // {
+        //     Singleton.Instance.step = 2000;
+        //     Debug.Log(2000);
+        // }
 
-    void Range2()
-    {
-        range = 1500;
-    }
-
-    void Range3()
-    {
-        range = 2000;
-    }
-
-    void Range4()
-    {
-        range = 2000;
-    }
-        DontDestroyOnLoad(this.gameObject); //현재의 오브젝트가 다른 씬으로 넘어가도 삭제하지 않음
-    }
-
-    public void Send(int Step)
-    {
-        Step = range;
-    }
-
+        // if (NoRangeBtn = true)
+        // {
+        //     Singleton.Instance.step = 0;
+        //     Debug.Log(00);
+        // }
+    //          DontDestroyOnLoad(this.gameObject); //현재의 오브젝트가 다른 씬으로 넘어가도 삭제하지 않음
+    // }
 }
 

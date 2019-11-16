@@ -19,10 +19,9 @@ public class StepManager : MonoBehaviour
             return instance;
         }
     }
-
-    // int Step;
-    public int range;
+    // public int range;
     private int Step;
+    private int range;
     public Button Range1Btn;
     public Button Range2Btn;
     public Button Range3Btn;
@@ -75,6 +74,11 @@ public class StepManager : MonoBehaviour
         range = 2000;
     }
         DontDestroyOnLoad(this.gameObject); //현재의 오브젝트가 다른 씬으로 넘어가도 삭제하지 않음
+    }
+
+    public void Send(int Step)
+    {
+        Step = range;
     }
 
 }

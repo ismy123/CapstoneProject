@@ -7,9 +7,9 @@ public class StepBtnClicked : MonoBehaviour
 {
     public GameObject Canvas;
 
-    // public void Invisible()
-    // {
-    //     Canvas.SetActive(false);
-    // }
+    public void Invisible()
+    {
+        Canvas.SetActive(false);
+    }
   
 }

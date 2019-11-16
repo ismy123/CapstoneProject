@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class StepCounter : MonoBehaviour
 {
    public Text StepCount;
-   public int range;
+   public int Step;
 
 
     [Header("Pedometer")]
@@ -30,8 +30,8 @@ public class StepCounter : MonoBehaviour
 
     void Start()
     {
-      StepManager.Instance.ButtonClick();
-      Debug.Log (range);
+      StepManager.Instance.Send(Step);
+      Debug.Log (Step);
     }
 
 
@@ -76,7 +76,7 @@ public class StepCounter : MonoBehaviour
                 // Only goes to high, if the Input is higher than the highLimit.
                 stateHigh = true;
                 steps++; // Counts the steps when the comparator goes to high.
-                StepCount.text = "Steps: " + steps + " / " + range ;
+                StepCount.text = "Steps: " + steps + " / " + Step ;
             }
         }
         else

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class StepController : MonoBehaviour
 {
    public GameObject StepPanel;
+   public GameObject goal;
    public GameObject StepText;
    public GameObject InputField;
    private int num;
-   private int countGuess;
 
    [SerializeField]
    private InputField input;
@@ -17,15 +17,15 @@ public class StepController : MonoBehaviour
    [SerializeField]
    private Text text;
 
+
    void Awake()
    {
-      // input = GameObject.Find("InputField").GetComponent<InputField>();
       num = 1500;
       text.text = "Enter your today's step";
    }
-   public void GetInput(string step)
+   public void GetInput(string goal)
    {
-      CompareStep(int.Parse(step));
+      CompareStep(int.Parse(goal));
       input.text = "";
    }
 
@@ -34,8 +34,9 @@ public class StepController : MonoBehaviour
       if (step >= num) 
       {
          StepPanel.SetActive(false);
-         StepText.SetActive(false);
+         //goal.SetActive(false);
          InputField.SetActive(false);
+         StepText.SetActive(false);
       }
 
       else if (step < num)

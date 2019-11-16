@@ -1,14 +1,14 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StepCounter : MonoBehaviour
 {
-    [Header("UI")]
-    public Text stepsText;
-    public Text walkingText;
-    public Text TimeElapsedWalkingText;
-    public Text TimeElapsedStandingStillText;
+
+   public GameObject goal;
+   public Text StepCount;
+
 
     [Header("Pedometer")]
     public float lowLimit = 0.005F; // Level to fall to the low state. 
@@ -28,27 +28,33 @@ public class StepCounter : MonoBehaviour
     public bool isWalking = false;
     private bool startWaitCounter = false;
 
+    void Start()
+    {
+      
+    }
+
     void Awake()
     {
         averageAcceleration = Input.acceleration.magnitude; // Initialize average filter.
         oldSteps = steps;
     }
 
+
     void Update()
     {
-        UpdateElapsedWalkingTime(); // Updates the time you spend while walking.
-        WalkingCheck(); // Checks if you are walking or not.
+        //UpdateElapsedWalkingTime(); // Updates the time you spend while walking.
+        //WalkingCheck(); // Checks if you are walking or not.
 
         // Updates the isWalking Text.
-        if (isWalking)
-        {
-            walkingText.text = ("Good job! You're walking!");
-        }
+        // if (isWalking)
+        // {
+        //     walkingText.text = ("Good job! You're walking!");
+        // }
 
-        else if (!isWalking)
-        {
-            walkingText.text = ("Cheer Up!");
-        }
+        // else if (!isWalking)
+        // {
+        //     walkingText.text = ("Cheer Up!");
+        // }
     }
 
     void FixedUpdate()
@@ -67,7 +73,7 @@ public class StepCounter : MonoBehaviour
                 // Only goes to high, if the Input is higher than the highLimit.
                 stateHigh = true;
                 steps++; // Counts the steps when the comparator goes to high.
-                stepsText.text = "Steps: " + steps;
+                StepCount.text = "Steps: " + steps + " / " + goal ;
             }
         }
         else
@@ -111,7 +117,7 @@ public class StepCounter : MonoBehaviour
     }
 
     // Updates the time you spend while walking.
-    private void UpdateElapsedWalkingTime()
+    /*private void UpdateElapsedWalkingTime()
     {
         int secondsWalk = (int)(timeElapsedWalking % 60);
         int minutesWalk = (int)(timeElapsedWalking / 60) % 60;
@@ -136,4 +142,5 @@ public class StepCounter : MonoBehaviour
             timeElapsedStandingStill += Time.deltaTime;
         }
     }
+    */
 }

@@ -60,7 +60,7 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
 
     void Update()
     {
-        StepCount.text = "Steps: " + steps + " / " + Singleton.Instance.step ; // 싱글톤쓸때 이런식으로 쓰면 됌
+        StepCount.text = /*"Steps: " + steps + " / " + */ Singleton.Instance.step.ToString() ; // 싱글톤쓸때 이런식으로 쓰면 됨
     }
 
     void FixedUpdate()

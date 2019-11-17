@@ -19,7 +19,7 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
     public float currentAcceleration = 0F; // Noise filter.
     float averageAcceleration = 0F;
 
-    public int steps = 0; // Step counter. Counts when comparator state goes to high.
+    //public int steps = 0; // Step counter. Counts when comparator state goes to high.
     private int oldSteps;
     public float waitCounter = 0F;
     public float timeElapsedWalking = 0F;
@@ -37,7 +37,8 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
     void Awake()
     {
         averageAcceleration = Input.acceleration.magnitude; // Initialize average filter.
-        oldSteps = steps;
+        //oldSteps = steps;
+        oldSteps = Singleton.Instance.step;
     }
 
 
@@ -60,7 +61,7 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
 
     void Update()
     {
-        StepCount.text = /*"Steps: " + steps + " / " + */ Singleton.Instance.step.ToString() ; // 싱글톤쓸때 이런식으로 쓰면 됨
+        StepCount.text = "Steps: " + Singleton.Instance.step + " / " + Singleton.Instance.range ; // 싱글톤쓸때 이런식으로 쓰면 됌
     }
 
     void FixedUpdate()
@@ -78,7 +79,7 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
             { 
                 // Only goes to high, if the Input is higher than the highLimit.
                 stateHigh = true;
-                steps++; // Counts the steps when the comparator goes to high.
+                Singleton.Instance.step++; // Counts the steps when the comparator goes to high.
                 // StepCount.text = "Steps: " + steps + " / " + Singleton.Instance.step ;
             }
         }
@@ -95,7 +96,7 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
     // Checks if you are walking or not.
     private void WalkingCheck()
     {
-        if (steps != oldSteps)
+        if (Singleton.Instance.step != oldSteps)
         {
             startWaitCounter = true;
             waitCounter = 0F;
@@ -119,7 +120,7 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
         {
             isWalking = false;
         }
-        oldSteps = steps;
+        oldSteps = Singleton.Instance.step;
     }
 
     // Updates the time you spend while walking.

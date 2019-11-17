@@ -160,7 +160,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 28
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -196,9 +196,65 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -241, y: -99.5}
-  m_SizeDelta: {x: 230, y: 49.485962}
+  m_AnchoredPosition: {x: -296, y: -99.5}
+  m_SizeDelta: {x: 300, y: 49.485962}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &72663416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 72663418}
+  - component: {fileID: 72663417}
+  m_Layer: 0
+  m_Name: ObjectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &72663417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72663416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7480e8e30bb04164ab7ae6b366d4a37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  marblePrefabs:
+  - {fileID: 8382411320751110993, guid: a3b1e1b5aadbb1144bb994206742fb36, type: 3}
+  - {fileID: 4797555261808713287, guid: 450bc02de4f536240bdcfaffbe0cc763, type: 3}
+  - {fileID: 2311939590722603271, guid: 7585be9634d739b45bae4285feb87d4b, type: 3}
+  itemPrefabs:
+  - {fileID: 1564962618732493768, guid: a577c7ae8287cc04496a556d7d2a9d32, type: 3}
+  - {fileID: 5145008442233188960, guid: 8393adab1049a5b47b1c81914bcc7f0b, type: 3}
+  monsterPrefabs:
+  - {fileID: 8296137545698473443, guid: 3d1c58a5c91b306449d859f400b1ab87, type: 3}
+  - {fileID: 8605294832921220286, guid: 6a86f3f72ba491b47861c6180285e6ec, type: 3}
+  - {fileID: 9076920774568469083, guid: 28e320c14f0c40347829af54d58cb008, type: 3}
+  - {fileID: 7568747254645864198, guid: d5f72bfa95ec6d94cad8d7fdc8b7b68b, type: 3}
+  - {fileID: 6733468332358035779, guid: a40dd46de96889a43bf687c1a8761d21, type: 3}
+--- !u!4 &72663418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72663416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 885.62, y: 2120.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &83099803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,7 +1468,6 @@ MonoBehaviour:
   filterHigh: 10
   filterLow: 0.1
   currentAcceleration: 0
-  steps: 0
   waitCounter: 0
   timeElapsedWalking: 0
   timeElapsedStandingStill: 0

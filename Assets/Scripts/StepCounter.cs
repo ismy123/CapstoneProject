@@ -94,7 +94,7 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
     }
 
     // Checks if you are walking or not.
-    private void WalkingCheck()
+    public void WalkingCheck()
     {
         if (Singleton.Instance.step != oldSteps)
         {

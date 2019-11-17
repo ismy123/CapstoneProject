@@ -4,23 +4,24 @@
  * 아이템: 85 걸음
  * 몬스터: 100 걸음
  */
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GenerateObjects : MonoBehaviour
 {
-    private int currentSteps, bubbleSteps, itemSteps, monsterSteps;
+    private int currentSteps, marbleSteps, itemSteps, monsterSteps;
+    private int newMarbleStep, newItemStep, newMonsterStep = -1;
     private int random;
     private float randomX;
     private Vector3 pos;
+    private bool isObjExist;
 
-    private int bubble = 40;                            //구슬 기준 걸음 수
-    private int item = 85;
-    private int monster = 100;
+    private int marbleLimit = 10;                            //구슬 기준 걸음 수 40
+    private int itemLimit = 5;
+    private int monsterLimit = 16;
 
     [SerializeField]
-    private GameObject[] bubblePrefabs;                 //구슬 오브젝트
+    private GameObject[] marblePrefabs;                 //구슬 오브젝트
 
     [SerializeField]
     private GameObject[] itemPrefabs;
@@ -28,35 +29,67 @@ public class GenerateObjects : MonoBehaviour
     [SerializeField]
     private GameObject[] monsterPrefabs;
 
-    public GameObject ground;
+    private GameObject[] marble;
+    private GameObject[] item;
+    private GameObject[] monster;
+    private GameObject[] objects;
+
+    private StepCounter stepCounter = new StepCounter();
 
     // Update is called once per frame
     void Update()
     {
         currentSteps = Singleton.Instance.step;
 
-        bubbleSteps = currentSteps % bubble;
-        itemSteps = currentSteps % item;
-        monsterSteps = currentSteps % monster;
+        marbleSteps = currentSteps % marbleLimit;
+        itemSteps = currentSteps % itemLimit;
+        monsterSteps = currentSteps % monsterLimit;
 
-        if (bubbleSteps == bubble)
+        if (currentSteps > 0 && (newMarbleStep != currentSteps) && marbleSteps == 0)    //구슬 생성 조건
         {
-            random = Random.Range(0, 2);
-            Instantiate(bubblePrefabs[random], RandomPos(), Quaternion.identity);
+            newMarbleStep = currentSteps;
+            random = Random.Range(0, 2);                                                //구슬 종류 뽑고
+            Instantiate(marblePrefabs[random], RandomPos(), Quaternion.identity);       //씬에 구슬 생성
+            //Instantiate(marblePrefabs[random], new Vector3(0,1,-60), Quaternion.identity);
+            Handheld.Vibrate();                                                         //진동으로 구슬 생성 알림
         }
 
-        if (itemSteps == item)
+        if (currentSteps > 0 && (newItemStep != currentSteps) && itemSteps == 0)         //아이템 생성 조건
         {
+            newItemStep = currentSteps;
             random = Random.Range(0, 1);
+            Instantiate(itemPrefabs[random], RandomPos(), Quaternion.identity);
+            Handheld.Vibrate();
         }
 
-        if (monsterSteps == monster)
+        if (currentSteps > 0 && (newMonsterStep != currentSteps) && monsterSteps == 0)      //몬스터 생성 조건
         {
-            random = Random.Range(0, 6);
+            newMonsterStep = currentSteps;
+            random = Random.Range(0, 4);
+            Instantiate(monsterPrefabs[random], RandomPos(), Quaternion.identity);
+            Handheld.Vibrate();
         }
     }
 
-    Vector3 RandomPos()
+    void FixedUpdate()
+    {
+        isObjExist = GameObject.FindGameObjectsWithTag("marble") != null || GameObject.FindGameObjectsWithTag("item") != null || GameObject.FindGameObjectsWithTag("monster") != null;
+        stepCounter.WalkingCheck();
+
+        if(isObjExist && stepCounter.isWalking == true)                       //씬에 오브젝트 있고 사용자가 걷고 있으면 실행
+        {
+            marble = GameObject.FindGameObjectsWithTag("marble");
+            item = GameObject.FindGameObjectsWithTag("item");
+            monster = GameObject.FindGameObjectsWithTag("monster");
+
+            objects = marble.Concat(item.Concat(monster).ToArray()).ToArray();
+
+            foreach (GameObject o in objects)
+                o.transform.Translate(Vector3.back * Time.deltaTime / 2, Space.World);        //이동
+        }
+    }
+
+    Vector3 RandomPos()                                 //화면 상단의 임의의 위치 잡는다
     {
         randomX = Random.Range(-3.0f, 3.0f);
         pos = new Vector3(randomX, 1, -33);

@@ -17,8 +17,8 @@ public class GenerateObjects : MonoBehaviour
     private bool isObjExist;
 
     private int marbleLimit = 10;                            //구슬 기준 걸음 수 40
-    private int itemLimit = 5;
-    private int monsterLimit = 16;
+    private int itemLimit = 85;
+    private int monsterLimit = 100;
 
     [SerializeField]
     private GameObject[] marblePrefabs;                 //구슬 오브젝트
@@ -85,7 +85,7 @@ public class GenerateObjects : MonoBehaviour
             objects = marble.Concat(item.Concat(monster).ToArray()).ToArray();
 
             foreach (GameObject o in objects)
-                o.transform.Translate(Vector3.back * Time.deltaTime / 2, Space.World);        //이동
+                o.transform.Translate(Vector3.back * Time.deltaTime, Space.World);        //이동
         }
     }
 

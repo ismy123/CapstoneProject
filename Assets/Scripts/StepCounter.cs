@@ -24,7 +24,6 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
     public float waitCounter = 0F;
     public float timeElapsedWalking = 0F;
     public float timeElapsedStandingStill = 0F;
-    public bool isWalking = false;
     private bool startWaitCounter = false;
 
     void Start()
@@ -42,26 +41,23 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
     }
 
 
-    // void Update()
-    // {
-        //UpdateElapsedWalkingTime(); // Updates the time you spend while walking.
-        //WalkingCheck(); // Checks if you are walking or not.
-
-        // Updates the isWalking Text.
-        // if (isWalking)
-        // {
-        //     walkingText.text = ("Good job! You're walking!");
-        // }
-
-        // else if (!isWalking)
-        // {
-        //     walkingText.text = ("Cheer Up!");
-        // }
-    // }
 
     void Update()
     {
         StepCount.text = "Steps: " + Singleton.Instance.step + " / " + Singleton.Instance.range ; // 싱글톤쓸때 이런식으로 쓰면 됌
+
+        UpdateElapsedWalkingTime(); // Updates the time you spend while walking.
+        WalkingCheck(); // Checks if you are walking or not.
+
+        if (Singleton.Instance.isWalking == true)
+        {
+            
+        }
+
+        else if (Singleton.Instance.isWalking == false)
+        {
+            
+        }
     }
 
     void FixedUpdate()
@@ -108,7 +104,7 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
 
             if (waitCounter != 0)
             {
-                isWalking = true;
+                Singleton.Instance.isWalking = true;
             }
             if (waitCounter > 2.5)
             {
@@ -118,13 +114,13 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
         }
         else if (!startWaitCounter)
         {
-            isWalking = false;
+            Singleton.Instance.isWalking = false;
         }
         oldSteps = Singleton.Instance.step;
     }
 
     // Updates the time you spend while walking.
-    /*private void UpdateElapsedWalkingTime()
+   private void UpdateElapsedWalkingTime()
     {
         int secondsWalk = (int)(timeElapsedWalking % 60);
         int minutesWalk = (int)(timeElapsedWalking / 60) % 60;
@@ -137,17 +133,17 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
         string timeElapsedWalkingString = string.Format("{0:0}:{1:00}:{2:00}", hourWalk, minutesWalk, secondsWalk);
         string timeElapsedStandingStillString = string.Format("{0:0}:{1:00}:{2:00}", hoursStill, minutesStill, secondsStill);
 
-        TimeElapsedWalkingText.text = "Time spend walking: " + timeElapsedWalkingString;
-        TimeElapsedStandingStillText.text = "Time spend standing still: " + timeElapsedStandingStillString;
+        // TimeElapsedWalkingText.text = "Time spend walking: " + timeElapsedWalkingString;
+        // TimeElapsedStandingStillText.text = "Time spend standing still: " + timeElapsedStandingStillString;
 
-        if (isWalking)
+        if (Singleton.Instance.isWalking == true)
         {
             timeElapsedWalking += Time.deltaTime;
         }
-        else if (!isWalking)
+        else if (Singleton.Instance.isWalking == false)
         {
             timeElapsedStandingStill += Time.deltaTime;
         }
     }
-    */
+    
 }

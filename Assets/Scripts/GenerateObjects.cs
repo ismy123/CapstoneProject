@@ -76,7 +76,7 @@ public class GenerateObjects : MonoBehaviour
         isObjExist = GameObject.FindGameObjectsWithTag("marble") != null || GameObject.FindGameObjectsWithTag("item") != null || GameObject.FindGameObjectsWithTag("monster") != null;
         stepCounter.WalkingCheck();
 
-        if(isObjExist && stepCounter.isWalking == true)                       //씬에 오브젝트 있고 사용자가 걷고 있으면 실행
+        if(isObjExist && Singleton.Instance.isWalking == true)                       //씬에 오브젝트 있고 사용자가 걷고 있으면 실행
         {
             marble = GameObject.FindGameObjectsWithTag("marble");
             item = GameObject.FindGameObjectsWithTag("item");

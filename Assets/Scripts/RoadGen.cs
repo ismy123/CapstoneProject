@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class RoadGen : MonoBehaviour // 끝없는 길 만들기
 {
@@ -33,8 +32,7 @@ public class RoadGen : MonoBehaviour // 끝없는 길 만들기
         nextStep+=10;
         GameObject moveroad = Instantiate(PrefabsRoad[Random.Range(0,PrefabsRoad.Length)], new Vector3(startPos.position.x,startPos.position.y,transform.position.z+nextStep), Quaternion.identity) as GameObject; // 길 무한 생성
         
-         if (Singleton.Instance.isWalking == true) // 사용자가 움직이면 길도 움직이게 하기
-            {
+        
                 //nextStep+=10;
                 // if(moveroad.transform.position.z + 23.3f < -31f)
                 //     {
@@ -50,17 +48,18 @@ public class RoadGen : MonoBehaviour // 끝없는 길 만들기
                         moveDir = new Vector3(0, 0, -1); 
                         moveDir *= speed;
                         moveDir = transform.TransformDirection(moveDir);
-                    }
                     
-                    moveDir *= Time.deltaTime;
+                    
+                        moveDir *= Time.deltaTime;
 
-                    foreach(GameObject r in roads)
+                        foreach(GameObject r in roads)
                         r.transform.TransformDirection(moveDir);
-            }
-        else
-            {
-                Debug.Log("You Should Move!!");
-            }
-        }
+                    }
+            
+                else
+                    {
+                        Debug.Log("You Should Move!!");
+                    }
+    }   
 
 }

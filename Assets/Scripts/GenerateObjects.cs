@@ -17,7 +17,7 @@ public class GenerateObjects : MonoBehaviour
     private bool isObjExist;
 
     private int marbleLimit = 10;                            //구슬 기준 걸음 수 40
-    private int itemLimit = 85;
+    private int itemLimit = 5;
     private int monsterLimit = 100;
 
     [SerializeField]
@@ -48,26 +48,26 @@ public class GenerateObjects : MonoBehaviour
         if (currentSteps > 0 && (newMarbleStep != currentSteps) && marbleSteps == 0)    //구슬 생성 조건
         {
             newMarbleStep = currentSteps;
-            random = Random.Range(0, 2);                                                //구슬 종류 뽑고
+            random = Random.Range(0, 3);                                                //구슬 종류 뽑고
             Instantiate(marblePrefabs[random], RandomPos(), Quaternion.identity);       //씬에 구슬 생성
             //Instantiate(marblePrefabs[random], new Vector3(0,1,-60), Quaternion.identity);
-            Handheld.Vibrate();                                                         //진동으로 구슬 생성 알림
+            //Handheld.Vibrate();                                                         //진동으로 구슬 생성 알림
         }
 
         if (currentSteps > 0 && (newItemStep != currentSteps) && itemSteps == 0)         //아이템 생성 조건
         {
             newItemStep = currentSteps;
-            random = Random.Range(0, 1);
+            random = Random.Range(0, 2);
             Instantiate(itemPrefabs[random], RandomPos(), Quaternion.identity);
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
         }
 
         if (currentSteps > 0 && (newMonsterStep != currentSteps) && monsterSteps == 0)      //몬스터 생성 조건
         {
             newMonsterStep = currentSteps;
-            random = Random.Range(0, 4);
+            random = Random.Range(0, 5);
             Instantiate(monsterPrefabs[random], RandomPos(), Quaternion.identity);
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
         }
     }
 

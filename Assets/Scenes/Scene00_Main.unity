@@ -24,9 +24,9 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -2115,7 +2115,7 @@ Camera:
   m_GameObject: {fileID: 962099316}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3406,6 +3406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1564970883}
   - component: {fileID: 1564970884}
+  - component: {fileID: 1564970882}
   m_Layer: 0
   m_Name: RoadGenerator
   m_TagString: Untagged
@@ -3413,6 +3414,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1564970882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564970881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8f63c5533bb7446a9432cab861ab89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1564970883
 Transform:
   m_ObjectHideFlags: 0
@@ -3440,8 +3453,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {fileID: 842761698614858964}
+  nextStep: 0
+  speed: 4
   PrefabsRoad:
-  - {fileID: 2550747144782195937, guid: f2f0a3c1a8f7de844972a3fc180bba38, type: 3}
+  - {fileID: 842761698614858952}
   - {fileID: 4410261472610738388, guid: d7029e82f2aa37c41a7b2bf6e65502d7, type: 3}
   - {fileID: 719563943086920649, guid: 8193f62fa517b6d4990ba6b9a3879a23, type: 3}
 --- !u!1 &1766119812
@@ -4102,7 +4117,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 962099318}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4137,7 +4152,15 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+
+  m_Pivot: {x: 0, y: 0}
+--- !u!1 &842761698614858952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2550747144782195937, guid: f2f0a3c1a8f7de844972a3fc180bba38,
+    type: 3}
+  m_PrefabInstance: {fileID: 2941981194879498281}
+  m_PrefabAsset: {fileID: 0}
+
 --- !u!4 &842761698614858964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2550747144782195965, guid: f2f0a3c1a8f7de844972a3fc180bba38,
@@ -4169,7 +4192,7 @@ PrefabInstance:
     - target: {fileID: 2550747144782195965, guid: f2f0a3c1a8f7de844972a3fc180bba38,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -56.9
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 2550747144782195965, guid: f2f0a3c1a8f7de844972a3fc180bba38,
         type: 3}
@@ -4210,6 +4233,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550747144782195965, guid: f2f0a3c1a8f7de844972a3fc180bba38,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550747144782195939, guid: f2f0a3c1a8f7de844972a3fc180bba38,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550747144782195936, guid: f2f0a3c1a8f7de844972a3fc180bba38,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6992445225527183673, guid: f2f0a3c1a8f7de844972a3fc180bba38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.4485
+      objectReference: {fileID: 0}
+    - target: {fileID: 6992445225527183673, guid: f2f0a3c1a8f7de844972a3fc180bba38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.5669
+      objectReference: {fileID: 0}
+    - target: {fileID: 6992445225527183673, guid: f2f0a3c1a8f7de844972a3fc180bba38,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2696412
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2f0a3c1a8f7de844972a3fc180bba38, type: 3}

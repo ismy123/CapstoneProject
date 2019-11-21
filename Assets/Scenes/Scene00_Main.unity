@@ -3236,6 +3236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1564970883}
   - component: {fileID: 1564970884}
+  - component: {fileID: 1564970882}
   m_Layer: 0
   m_Name: RoadGenerator
   m_TagString: Untagged
@@ -3243,6 +3244,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1564970882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564970881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8f63c5533bb7446a9432cab861ab89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1564970883
 Transform:
   m_ObjectHideFlags: 0
@@ -3934,7 +3947,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 962099318}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4007,7 +4020,7 @@ PrefabInstance:
     - target: {fileID: 2550747144782195965, guid: f2f0a3c1a8f7de844972a3fc180bba38,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -61.79
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 2550747144782195965, guid: f2f0a3c1a8f7de844972a3fc180bba38,
         type: 3}

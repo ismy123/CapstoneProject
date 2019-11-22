@@ -50,8 +50,7 @@ public class GenerateObjects : MonoBehaviour
             newMarbleStep = currentSteps;
             random = Random.Range(0, 3);                                                //구슬 종류 뽑고
             Instantiate(marblePrefabs[random], RandomPos(), Quaternion.identity);       //씬에 구슬 생성
-            //Instantiate(marblePrefabs[random], new Vector3(0,1,-60), Quaternion.identity);
-            //Handheld.Vibrate();                                                         //진동으로 구슬 생성 알림
+            Handheld.Vibrate();                                                         //진동으로 구슬 생성 알림
         }
 
         if (currentSteps > 0 && (newItemStep != currentSteps) && itemSteps == 0)         //아이템 생성 조건
@@ -59,7 +58,7 @@ public class GenerateObjects : MonoBehaviour
             newItemStep = currentSteps;
             random = Random.Range(0, 2);
             Instantiate(itemPrefabs[random], RandomPos(), Quaternion.identity);
-            //Handheld.Vibrate();
+            Handheld.Vibrate();
         }
 
         if (currentSteps > 0 && (newMonsterStep != currentSteps) && monsterSteps == 0)      //몬스터 생성 조건
@@ -67,7 +66,7 @@ public class GenerateObjects : MonoBehaviour
             newMonsterStep = currentSteps;
             random = Random.Range(0, 5);
             Instantiate(monsterPrefabs[random], RandomPos(), Quaternion.identity);
-            //Handheld.Vibrate();
+            Handheld.Vibrate();
         }
     }
 
@@ -85,7 +84,7 @@ public class GenerateObjects : MonoBehaviour
             objects = marble.Concat(item.Concat(monster).ToArray()).ToArray();
 
             foreach (GameObject o in objects)
-                o.transform.Translate(Vector3.back * Time.deltaTime, Space.World);        //이동
+                o.transform.Translate(Vector3.back * Time.deltaTime * 2, Space.World);        //이동
         }
     }
 

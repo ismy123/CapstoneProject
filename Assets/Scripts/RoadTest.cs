@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,4 +24,4 @@ public class RoadTest : MonoBehaviour
                 r.transform.Translate(moveDir, Space.World);
                 
     }
-}
+}*/

@@ -12,7 +12,7 @@ public class RoadGen : MonoBehaviour // 끝없는 길 만들기
 
     public float speed = 5.0f; // 길이 움직이는 속도 조절
 
-    //Vector3 moveDir = Vector3.zero;
+    Vector3 moveDir = Vector3.zero;
 
     public GameObject [] PrefabsRoad; // 길의 다양한 타입을 저장
     private StepCounter step = new StepCounter();
@@ -34,7 +34,7 @@ public class RoadGen : MonoBehaviour // 끝없는 길 만들기
         addroad();
         step.WalkingCheck();
 
-        /*if (Singleton.Instance.isWalking == true) // 사용자가 움직이면 길도 움직이게 하기
+        if (Singleton.Instance.isWalking == true) // 사용자가 움직이면 길도 움직이게 하기
         {
                 // transform.position = new Vector3(0,0,-100.0f);//프레임마다 등속으로 다가오기
 
@@ -42,18 +42,19 @@ public class RoadGen : MonoBehaviour // 끝없는 길 만들기
                 //moveDir *= speed;
                 //moveDir *= Time.deltaTime;
 
-                foreach(GameObject r in roads)
-                r.transform.Translate(moveDir, Space.World);
+                //foreach(GameObject r in roads)
+                //r.transform.Translate(moveDir, Space.World);
         }
         else
         {
             Debug.Log("You Should Move!!");
-        }*/
+        }
     }
 
     void addroad()
     {
         nextStep = nextStep + 5;
+        // newRoad = Instantiate(PrefabsRoad[Random.Range(0, 3)], new Vector3(startPos.position.x, startPos.position.y, transform.position.z + nextStep * 2), Quaternion.identity) as GameObject; // 길 생성
         newRoad = Instantiate(PrefabsRoad[Random.Range(0, 3)], new Vector3(startPos.position.x, startPos.position.y, transform.position.z + nextStep * 2), Quaternion.identity) as GameObject; // 길 생성
     }
 }

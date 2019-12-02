@@ -36,6 +36,15 @@ public class GenerateObjects : MonoBehaviour
 
     private StepCounter stepCounter = new StepCounter();
 
+    Transform tr;
+    public Vector3 targetTr;
+    float rotateSpeed = 2f;
+
+    private void Start()
+    {
+        tr = GetComponent<Transform>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -70,7 +79,7 @@ public class GenerateObjects : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         isObjExist = GameObject.FindGameObjectsWithTag("marble") != null || GameObject.FindGameObjectsWithTag("item") != null || GameObject.FindGameObjectsWithTag("monster") != null;
         stepCounter.WalkingCheck();
@@ -86,12 +95,18 @@ public class GenerateObjects : MonoBehaviour
             foreach (GameObject o in objects)
                 o.transform.Translate(Vector3.back * Time.deltaTime * 2, Space.World);        //이동
         }
+    }*/
+
+    void FixedUpdate()
+    {
+        if (Singleton.Instance.isWalking == true)
+            tr.RotateAround(targetTr, Vector3.left, rotateSpeed * Time.deltaTime);
     }
 
     Vector3 RandomPos()                                 //화면 상단의 임의의 위치 잡는다
     {
-        randomX = Random.Range(-3.0f, 3.0f);
-        pos = new Vector3(randomX, 1, -33);
+        randomX = Random.Range(-0.1f, -0.01f);
+        pos = new Vector3(randomX, -0.125f, 0.865f);
         return pos;
     }
 }

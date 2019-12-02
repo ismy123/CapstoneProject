@@ -54,7 +54,7 @@ public class ObjectActions : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {//Input.touchCount > 0 
+    {
         if ((current_item.activeSelf == false && current_marble.activeSelf == false) && Input.GetTouch(0).phase == TouchPhase.Began)         //사용자 터치 감지, 창이 열려있지 않을 때만 실행
         {
             Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
@@ -66,12 +66,12 @@ public class ObjectActions : MonoBehaviour
                 {
                     isMarble = true;
 
-                    if (Input.GetTouch(0).position.y >= (Screen.height * 0.8))    //사용자가 화면의 4/5 아래 위치에서 터치할 때 동작
+                    /*if (Input.GetTouch(0).position.y >= (Screen.height * 0.8))    //사용자가 화면의 4/5 아래 위치에서 터치할 때 동작
                     {
                         StartCoroutine(ShowToast("조금만 더 걸어보세요", 2.5f));    //2.5초 동안 사용자에게 더 걸으라는 메시지를 띄운다
-                    }
-                    else
-                    {
+                    }*/
+                    //else
+                    //{
                         switch (raycastHit.collider.gameObject.name)
                         {
                             case "marble01(Clone)":
@@ -96,18 +96,18 @@ public class ObjectActions : MonoBehaviour
                         popup.SetActive(true);
                         current_marble.SetActive(true);
                         Destroy(raycastHit.collider.gameObject);            //오브젝트 삭제
-                    }
+                    //}
                 }
                 else if (raycastHit.collider.CompareTag("item"))         //아이템 터치
                 {
                     isMarble = false;
 
-                    if (Input.GetTouch(0).position.y >= (Screen.height * 0.8))    //사용자가 화면의 4/5 아래 위치에서 터치할 때 동작
+                    /*if (Input.GetTouch(0).position.y >= (Screen.height * 0.8))    //사용자가 화면의 4/5 아래 위치에서 터치할 때 동작
                     {
                         StartCoroutine(ShowToast("조금만 더 걸어보세요", 2.5f));    //2.5초 동안 사용자에게 더 걸으라는 메시지를 띄운다
                     }
                     else
-                    {
+                    {*/
                         switch (raycastHit.collider.gameObject.name)
                         {
                             case "item01(Clone)":
@@ -128,7 +128,7 @@ public class ObjectActions : MonoBehaviour
                         popup.SetActive(true);
                         current_item.SetActive(true);
                         Destroy(raycastHit.collider.gameObject);              //오브젝트 삭제
-                    }
+                    //}
                 }
             }
         }

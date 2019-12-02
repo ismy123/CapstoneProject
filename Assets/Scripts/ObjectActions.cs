@@ -22,39 +22,43 @@ public class ObjectActions : MonoBehaviour
 
     private void Awake()
     {
-        popup = GameObject.Find("ObjectPopUpView");                             //팝업창
-        current_marble = GameObject.Find("marbleImg");
-        current_item = GameObject.Find("itemImg");
+        popup = GameObject.Find("Canvas/ObjectPopUpView");
+        current_marble = GameObject.Find("Canvas/marbleImg");
+        current_item = GameObject.Find("Canvas/itemImg");
+        //popup = GameObject.Find("ObjectPopUpView");                             //팝업창
+        //current_marble = GameObject.Find("marbleImg");
+        //current_item = GameObject.Find("itemImg");
 
-        title = GameObject.Find("objectTitle").GetComponent<Text>();            //획득 알림 텍스트
-        image = GameObject.Find("earnedObjectImg").GetComponent<Image>();       //획득 오브젝트 이미지
-        info = GameObject.Find("currentInfo").GetComponent<Text>();             //사용자 이름(인벤토리 현황)
+        title = GameObject.Find("Canvas/ObjectPopUpView/objectTitle").GetComponent<Text>();            //획득 알림 텍스트
+        image = GameObject.Find("Canvas/ObjectPopUpView/earnedObjectImg").GetComponent<Image>();       //획득 오브젝트 이미지
+        info = GameObject.Find("Canvas/ObjectPopUpView/currentInfo").GetComponent<Text>();             //사용자 이름(인벤토리 현황)
 
-        num1 = GameObject.Find("text1").GetComponent<Text>();
-        num2 = GameObject.Find("text2").GetComponent<Text>();
-        num3 = GameObject.Find("text3").GetComponent<Text>();
+        num1 = GameObject.Find("Canvas/marbleImg/objImg1/text1").GetComponent<Text>();
+        num2 = GameObject.Find("Canvas/marbleImg/objImg2/text2").GetComponent<Text>();
+        num3 = GameObject.Find("Canvas/marbleImg/objImg3/text3").GetComponent<Text>();
 
-        n1 = GameObject.Find("txt1").GetComponent<Text>();
-        n2 = GameObject.Find("txt2").GetComponent<Text>();
+        n1 = GameObject.Find("Canvas/itemImg/objImg1/txt1").GetComponent<Text>();
+        n2 = GameObject.Find("Canvas/itemImg/objImg2/txt2").GetComponent<Text>();
 
-        toastBackground = GameObject.Find("toastBackground").GetComponent<Image>();
-        text = GameObject.Find("toastMsg").GetComponent<Text>();
+        //toastBackground = GameObject.Find("toastBackground").GetComponent<Image>();
+        //text = GameObject.Find("toastMsg").GetComponent<Text>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Start Start()");
         popup.SetActive(false);
         current_marble.SetActive(false);
         current_item.SetActive(false);
 
-        toastBackground.enabled = false;
-        text.enabled = false;
+        /*toastBackground.enabled = false;
+        text.enabled = false;*/
     }
 
     // Update is called once per frame
     void Update()
-    {//Input.touchCount > 0 
+    {
         if ((current_item.activeSelf == false && current_marble.activeSelf == false) && Input.GetTouch(0).phase == TouchPhase.Began)         //사용자 터치 감지, 창이 열려있지 않을 때만 실행
         {
             Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
@@ -66,12 +70,12 @@ public class ObjectActions : MonoBehaviour
                 {
                     isMarble = true;
 
-                    if (Input.GetTouch(0).position.y >= (Screen.height * 0.8))    //사용자가 화면의 4/5 아래 위치에서 터치할 때 동작
+                    /*if (Input.GetTouch(0).position.y >= (Screen.height * 0.8))    //사용자가 화면의 4/5 아래 위치에서 터치할 때 동작
                     {
                         StartCoroutine(ShowToast("조금만 더 걸어보세요", 2.5f));    //2.5초 동안 사용자에게 더 걸으라는 메시지를 띄운다
-                    }
-                    else
-                    {
+                    }*/
+                    //else
+                    //{
                         switch (raycastHit.collider.gameObject.name)
                         {
                             case "marble01(Clone)":
@@ -90,24 +94,24 @@ public class ObjectActions : MonoBehaviour
                                 break;
                         }
 
-                        toastBackground.enabled = false;                        //아이템 창 나올 땐 토스트 메시지 안나오게 함
-                        text.enabled = false;
+                        //toastBackground.enabled = false;                        //아이템 창 나올 땐 토스트 메시지 안나오게 함
+                        //text.enabled = false;
 
                         popup.SetActive(true);
                         current_marble.SetActive(true);
                         Destroy(raycastHit.collider.gameObject);            //오브젝트 삭제
-                    }
+                    //}
                 }
                 else if (raycastHit.collider.CompareTag("item"))         //아이템 터치
                 {
                     isMarble = false;
 
-                    if (Input.GetTouch(0).position.y >= (Screen.height * 0.8))    //사용자가 화면의 4/5 아래 위치에서 터치할 때 동작
+                    /*if (Input.GetTouch(0).position.y >= (Screen.height * 0.8))    //사용자가 화면의 4/5 아래 위치에서 터치할 때 동작
                     {
                         StartCoroutine(ShowToast("조금만 더 걸어보세요", 2.5f));    //2.5초 동안 사용자에게 더 걸으라는 메시지를 띄운다
                     }
                     else
-                    {
+                    {*/
                         switch (raycastHit.collider.gameObject.name)
                         {
                             case "item01(Clone)":
@@ -122,13 +126,13 @@ public class ObjectActions : MonoBehaviour
                                 break;
                         }
 
-                        toastBackground.enabled = false;                        //아이템 창 나올 땐 토스트 메시지 안나오게 함
-                        text.enabled = false;
+                        //toastBackground.enabled = false;                        //아이템 창 나올 땐 토스트 메시지 안나오게 함
+                        //text.enabled = false;
 
                         popup.SetActive(true);
                         current_item.SetActive(true);
                         Destroy(raycastHit.collider.gameObject);              //오브젝트 삭제
-                    }
+                    //}
                 }
             }
         }

@@ -22,34 +22,38 @@ public class ObjectActions : MonoBehaviour
 
     private void Awake()
     {
-        popup = GameObject.Find("ObjectPopUpView");                             //팝업창
-        current_marble = GameObject.Find("marbleImg");
-        current_item = GameObject.Find("itemImg");
+        popup = GameObject.Find("Canvas/ObjectPopUpView");
+        current_marble = GameObject.Find("Canvas/marbleImg");
+        current_item = GameObject.Find("Canvas/itemImg");
+        //popup = GameObject.Find("ObjectPopUpView");                             //팝업창
+        //current_marble = GameObject.Find("marbleImg");
+        //current_item = GameObject.Find("itemImg");
 
-        title = GameObject.Find("objectTitle").GetComponent<Text>();            //획득 알림 텍스트
-        image = GameObject.Find("earnedObjectImg").GetComponent<Image>();       //획득 오브젝트 이미지
-        info = GameObject.Find("currentInfo").GetComponent<Text>();             //사용자 이름(인벤토리 현황)
+        title = GameObject.Find("Canvas/ObjectPopUpView/objectTitle").GetComponent<Text>();            //획득 알림 텍스트
+        image = GameObject.Find("Canvas/ObjectPopUpView/earnedObjectImg").GetComponent<Image>();       //획득 오브젝트 이미지
+        info = GameObject.Find("Canvas/ObjectPopUpView/currentInfo").GetComponent<Text>();             //사용자 이름(인벤토리 현황)
 
-        num1 = GameObject.Find("text1").GetComponent<Text>();
-        num2 = GameObject.Find("text2").GetComponent<Text>();
-        num3 = GameObject.Find("text3").GetComponent<Text>();
+        num1 = GameObject.Find("Canvas/marbleImg/objImg1/text1").GetComponent<Text>();
+        num2 = GameObject.Find("Canvas/marbleImg/objImg2/text2").GetComponent<Text>();
+        num3 = GameObject.Find("Canvas/marbleImg/objImg3/text3").GetComponent<Text>();
 
-        n1 = GameObject.Find("txt1").GetComponent<Text>();
-        n2 = GameObject.Find("txt2").GetComponent<Text>();
+        n1 = GameObject.Find("Canvas/itemImg/objImg1/txt1").GetComponent<Text>();
+        n2 = GameObject.Find("Canvas/itemImg/objImg2/txt2").GetComponent<Text>();
 
-        toastBackground = GameObject.Find("toastBackground").GetComponent<Image>();
-        text = GameObject.Find("toastMsg").GetComponent<Text>();
+        //toastBackground = GameObject.Find("toastBackground").GetComponent<Image>();
+        //text = GameObject.Find("toastMsg").GetComponent<Text>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Start Start()");
         popup.SetActive(false);
         current_marble.SetActive(false);
         current_item.SetActive(false);
 
-        toastBackground.enabled = false;
-        text.enabled = false;
+        /*toastBackground.enabled = false;
+        text.enabled = false;*/
     }
 
     // Update is called once per frame
@@ -90,8 +94,8 @@ public class ObjectActions : MonoBehaviour
                                 break;
                         }
 
-                        toastBackground.enabled = false;                        //아이템 창 나올 땐 토스트 메시지 안나오게 함
-                        text.enabled = false;
+                        //toastBackground.enabled = false;                        //아이템 창 나올 땐 토스트 메시지 안나오게 함
+                        //text.enabled = false;
 
                         popup.SetActive(true);
                         current_marble.SetActive(true);
@@ -122,8 +126,8 @@ public class ObjectActions : MonoBehaviour
                                 break;
                         }
 
-                        toastBackground.enabled = false;                        //아이템 창 나올 땐 토스트 메시지 안나오게 함
-                        text.enabled = false;
+                        //toastBackground.enabled = false;                        //아이템 창 나올 땐 토스트 메시지 안나오게 함
+                        //text.enabled = false;
 
                         popup.SetActive(true);
                         current_item.SetActive(true);

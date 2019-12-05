@@ -10,7 +10,6 @@
 		$sql = "update Marbles SET marble02 = marble02 + 1 WHERE userID = '$userID'";
 	else
 		$sql = "update Marbles SET marble03 = marble03 + 1 WHERE userID = '$userID'";
-	}
 
 	mysqli_query($con, $sql);
 	mysqli_close($con);

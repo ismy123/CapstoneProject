@@ -140,7 +140,7 @@ public class ObjectActions : MonoBehaviour
             title.text = str + "색 구슬을 획득했습니다.";
             info.text = "현재 " + name + "님의 구슬수입니다.";
             image.sprite = img;
-            StartCoroutine(UpdateMarbleCount(obj));                //받은 구슬 수++ && 구슬 정보 가져옴
+            StartCoroutine(GetMarbleCount(obj));                //받은 구슬 수++ && 구슬 정보 가져옴
         }
         else
         {
@@ -149,7 +149,7 @@ public class ObjectActions : MonoBehaviour
 
             info.text = "현재 " + name + "님의 아이템 현황입니다.";
             image.sprite = img;
-            StartCoroutine(UpdateItemCount(obj));                   //받은 아이템 수++ && 아이템 정보 가져옴
+            StartCoroutine(GetItemCount(obj));                   //받은 아이템 수++ && 아이템 정보 가져옴
         }
         popup.SetActive(true);
     }
@@ -163,8 +163,6 @@ public class ObjectActions : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Post("http://condi.swu.ac.kr/student/Dodori/marbles_update.php", wwwForm);
         
         yield return www.SendWebRequest();
-
-        StartCoroutine(GetMarbleCount());
     }
 
     IEnumerator UpdateItemCount(string obj)
@@ -176,12 +174,12 @@ public class ObjectActions : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Post("http://condi.swu.ac.kr/student/Dodori/items_update.php", wwwForm);
         
         yield return www.SendWebRequest();
-
-        StartCoroutine(GetItemCount());
     }
 
-    IEnumerator GetMarbleCount()
+    IEnumerator GetMarbleCount(string obj)
     {
+        yield return StartCoroutine(UpdateMarbleCount(obj));
+
         WWWForm wwwForm = new WWWForm();
         wwwForm.AddField("userID", "1");
 
@@ -193,14 +191,16 @@ public class ObjectActions : MonoBehaviour
             string t = www.downloadHandler.text;
             string[] value = t.Split('*');
 
-            num1.text = value[0] + " 개";
-            num2.text = value[1] + " 개";
-            num3.text = value[2] + " 개";
+            yield return num1.text = value[0] + " 개";
+            yield return num2.text = value[1] + " 개";
+            yield return num3.text = value[2] + " 개";
         }
     }
 
-    IEnumerator GetItemCount()
+    IEnumerator GetItemCount(string obj)
     {
+        yield return StartCoroutine(UpdateItemCount(obj));
+
         WWWForm wwwForm = new WWWForm();
         wwwForm.AddField("userID", "1");
         using (UnityWebRequest www = UnityWebRequest.Post("http://condi.swu.ac.kr/student/Dodori/items_retrieve.php", wwwForm))
@@ -211,8 +211,8 @@ public class ObjectActions : MonoBehaviour
             string t = www.downloadHandler.text;
             string[] value = t.Split('*');
 
-            n1.text = value[0] + " 개";
-            n2.text = value[1] + " 개";
+            yield return n1.text = value[0] + " 개";
+            yield return n2.text = value[1] + " 개";
         }
 
 

@@ -8,6 +8,7 @@
  */
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class ObjectActions : MonoBehaviour
@@ -47,7 +48,6 @@ public class ObjectActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Start Start()");
         popup.SetActive(false);
         current_marble.SetActive(false);
         current_item.SetActive(false);
@@ -79,16 +79,13 @@ public class ObjectActions : MonoBehaviour
                         switch (raycastHit.collider.gameObject.name)
                         {
                             case "marble01(Clone)":
-                                //구슬++
-                                SetObject("파란", "user", Resources.Load<Sprite>("Images/blue"), 5, 10, 15);      //값 변경
+                                SetObject("marble", "파란", "user", Resources.Load<Sprite>("Images/blue"), "marble01");      //값 변경
                                 break;
                             case "marble02(Clone)":
-                                //구슬++
-                                SetObject("노란", "user", Resources.Load<Sprite>("Images/yellow"), 5, 10, 15);
+                                SetObject("marble", "노란", "user", Resources.Load<Sprite>("Images/yellow"), "marble02");
                                 break;
                             case "marble03(Clone)":
-                                //구슬++
-                                SetObject("빨간", "user", Resources.Load<Sprite>("Images/red"), 5, 10, 15);
+                                SetObject("marble", "빨간", "user", Resources.Load<Sprite>("Images/red"), "marble03");
                                 break;
                             default:
                                 break;
@@ -115,12 +112,10 @@ public class ObjectActions : MonoBehaviour
                         switch (raycastHit.collider.gameObject.name)
                         {
                             case "item01(Clone)":
-                                //아이템++
-                                SetObject("물약", "user", Resources.Load<Sprite>("Images/blue"), 5, 10);  //값 변경
+                                SetObject("", "물약", "user", Resources.Load<Sprite>("Images/blue"), "item01");  //값 변경
                                 break;
                             case "item02(Clone)":
-                                //아이템++
-                                SetObject("쉴드", "user", Resources.Load<Sprite>("Images/red"), 5, 10);
+                                SetObject("", "쉴드", "user", Resources.Load<Sprite>("Images/red"), "item02");
                                 break;
                             default:
                                 break;
@@ -138,25 +133,89 @@ public class ObjectActions : MonoBehaviour
         }
     }
 
-    void SetObject(string color, string name, Sprite img, int num1, int num2, int num3)     //구슬 수정 창
+    void SetObject(string tag, string str, string name, Sprite img, string obj)     
     {
-        title.text = color + "색 구슬을 획득했습니다.";
-        info.text = "현재 " + name + "님의 구슬수입니다.";
-        image.sprite = img;
-        this.num1.text = num1 + " 개";
-        this.num2.text = num2 + " 개";
-        this.num3.text = num3 + " 개";
+        if(tag == "marble")                                                         //구슬 수정 창
+        {
+            title.text = str + "색 구슬을 획득했습니다.";
+            info.text = "현재 " + name + "님의 구슬수입니다.";
+            image.sprite = img;
+            StartCoroutine(GetMarbleCount(obj));                //받은 구슬 수++ && 구슬 정보 가져옴
+        }
+        else
+        {
+            if (str == "물약") { title.text = str + "을 획득했습니다."; }
+            else { title.text = str + "를 획득했습니다."; }
+
+            info.text = "현재 " + name + "님의 아이템 현황입니다.";
+            image.sprite = img;
+            StartCoroutine(GetItemCount(obj));                   //받은 아이템 수++ && 아이템 정보 가져옴
+        }
+        popup.SetActive(true);
     }
 
-    void SetObject(string item, string name, Sprite img, int n1, int n2)        //아이템 수정 창
+    IEnumerator UpdateMarbleCount(string obj)
     {
-        if (item == "물약") { title.text = item + "을 획득했습니다."; }
-        else { title.text = item + "를 획득했습니다."; }
+        WWWForm wwwForm = new WWWForm();
+        wwwForm.AddField("userID", "1");
+        wwwForm.AddField("object", obj);
 
-        info.text = "현재 " + name + "님의 아이템 현황입니다.";
-        image.sprite = img;
-        this.n1.text = n1 + " 개";
-        this.n2.text = n2 + " 개";
+        UnityWebRequest www = UnityWebRequest.Post("http://condi.swu.ac.kr/student/Dodori/marbles_update.php", wwwForm);
+        
+        yield return www.SendWebRequest();
+    }
+
+    IEnumerator UpdateItemCount(string obj)
+    {
+        WWWForm wwwForm = new WWWForm();
+        wwwForm.AddField("userID", "1");
+        wwwForm.AddField("object", obj);
+
+        UnityWebRequest www = UnityWebRequest.Post("http://condi.swu.ac.kr/student/Dodori/items_update.php", wwwForm);
+        
+        yield return www.SendWebRequest();
+    }
+
+    IEnumerator GetMarbleCount(string obj)
+    {
+        yield return StartCoroutine(UpdateMarbleCount(obj));
+
+        WWWForm wwwForm = new WWWForm();
+        wwwForm.AddField("userID", "1");
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://condi.swu.ac.kr/student/Dodori/marbles_retrieve.php", wwwForm))
+        {
+            www.downloadHandler = new DownloadHandlerBuffer();
+            yield return www.SendWebRequest();
+
+            string t = www.downloadHandler.text;
+            string[] value = t.Split('*');
+
+            yield return num1.text = value[0] + " 개";
+            yield return num2.text = value[1] + " 개";
+            yield return num3.text = value[2] + " 개";
+        }
+    }
+
+    IEnumerator GetItemCount(string obj)
+    {
+        yield return StartCoroutine(UpdateItemCount(obj));
+
+        WWWForm wwwForm = new WWWForm();
+        wwwForm.AddField("userID", "1");
+        using (UnityWebRequest www = UnityWebRequest.Post("http://condi.swu.ac.kr/student/Dodori/items_retrieve.php", wwwForm))
+        {
+            www.downloadHandler = new DownloadHandlerBuffer();
+            yield return www.SendWebRequest();
+
+            string t = www.downloadHandler.text;
+            string[] value = t.Split('*');
+
+            yield return n1.text = value[0] + " 개";
+            yield return n2.text = value[1] + " 개";
+        }
+
+
     }
 
     public void OnClosedClicked()           //확인 버튼 클릭했을 때, 구슬인지 아이템인지 확인하고 해당 창 닫기

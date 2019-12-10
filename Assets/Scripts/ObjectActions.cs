@@ -10,6 +10,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ObjectActions : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class ObjectActions : MonoBehaviour
     private Text title, info, num1, num2, num3, n1, n2;
     private Image image;
     private bool isMarble;                  //클릭한 오브젝트가 구슬인지 아이템인지 정보 저장
+    private GameObject monster01;
+    private GameObject monster02;
+    private GameObject monster03;
+    private GameObject monster04;
+    private GameObject monster05;
 
     private Image toastBackground;
     private Text text;
@@ -128,6 +134,38 @@ public class ObjectActions : MonoBehaviour
                         current_item.SetActive(true);
                         Destroy(raycastHit.collider.gameObject);              //오브젝트 삭제
                     //}
+                }
+
+                else if(raycastHit.collider.CompareTag("monster")) // 몬스터 터치했을 시
+                {
+                    isMarble = false;
+
+                    switch (raycastHit.collider.gameObject.name)
+                        {
+                            case "monster01(Clone)":
+                                Singleton.Instance.Monster = monster01;
+                                SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
+                                break;
+                            case "monster02(Clone)":
+                                Singleton.Instance.Monster = monster02;
+                                SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
+                                break;
+                            case "monster03(Clone)":
+                                Singleton.Instance.Monster = monster03;
+                                SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
+                                break;
+                            case "monster04(Clone)":
+                                Singleton.Instance.Monster = monster04;
+                                SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
+                                break;
+                            case "monster05(Clone)":
+                                Singleton.Instance.Monster = monster05;
+                                SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
+                                break;
+                            default:
+                                break;
+                        }
+
                 }
             }
         }

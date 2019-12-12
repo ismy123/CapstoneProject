@@ -2333,14 +2333,14 @@ MonoBehaviour:
   - {fileID: 4797555261808713287, guid: 450bc02de4f536240bdcfaffbe0cc763, type: 3}
   - {fileID: 2311939590722603271, guid: 7585be9634d739b45bae4285feb87d4b, type: 3}
   itemPrefabs:
-  - {fileID: 1564962618732493768, guid: a577c7ae8287cc04496a556d7d2a9d32, type: 3}
-  - {fileID: 5145008442233188960, guid: 8393adab1049a5b47b1c81914bcc7f0b, type: 3}
+  - {fileID: 4901231947849657548, guid: be5a8850012f97b49959d790977aba02, type: 3}
+  - {fileID: 4901231947849657548, guid: be5a8850012f97b49959d790977aba02, type: 3}
   monsterPrefabs:
-  - {fileID: 8296137545698473443, guid: 3d1c58a5c91b306449d859f400b1ab87, type: 3}
-  - {fileID: 8605294832921220286, guid: 6a86f3f72ba491b47861c6180285e6ec, type: 3}
-  - {fileID: 9076920774568469083, guid: 28e320c14f0c40347829af54d58cb008, type: 3}
-  - {fileID: 7568747254645864198, guid: d5f72bfa95ec6d94cad8d7fdc8b7b68b, type: 3}
-  - {fileID: 6733468332358035779, guid: a40dd46de96889a43bf687c1a8761d21, type: 3}
+  - {fileID: -927199367670048503, guid: 4cb0b513676f14137b8380f6b12937ce, type: 3}
+  - {fileID: -927199367670048503, guid: 35fc08aefd90645d8a170aa7905fbc90, type: 3}
+  - {fileID: 7830163811074795877, guid: 61d692f9282df2e4d81e94b1dc331554, type: 3}
+  - {fileID: -927199367670048503, guid: 35fc08aefd90645d8a170aa7905fbc90, type: 3}
+  - {fileID: 7830163811074795877, guid: 61d692f9282df2e4d81e94b1dc331554, type: 3}
   targetTr: {x: 0, y: 0, z: 0}
 --- !u!4 &72663418
 Transform:
@@ -22003,7 +22003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721256657}
   m_LocalRotation: {x: 0.98998475, y: -0, z: -0, w: 0.14117464}
-  m_LocalPosition: {x: 4.7342205, y: -12.315246, z: -18.367126}
+  m_LocalPosition: {x: 4.7342205, y: -12.33, z: -18.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1196061155}

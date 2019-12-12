@@ -106,7 +106,7 @@ public class GenerateObjects : MonoBehaviour
     Vector3 RandomPos()                                 //화면 상단의 임의의 위치 잡는다
     {
         randomX = Random.Range(-0.1f, -0.01f);
-        pos = new Vector3(randomX, -0.125f, 0.865f);
+        pos = new Vector3(randomX, -0.246f, -1.045f);
         return pos;
     }
 }

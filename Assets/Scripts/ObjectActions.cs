@@ -117,12 +117,12 @@ public class ObjectActions : MonoBehaviour
                     {*/
                         switch (raycastHit.collider.gameObject.name)
                         {
-                            case "item01(Clone)":
+                            case "itembox(Clone)":
                                 SetObject("", "물약", "user", Resources.Load<Sprite>("Images/blue"), "item01");  //값 변경
                                 break;
-                            case "item02(Clone)":
+                            /*case "item02(Clone)":
                                 SetObject("", "쉴드", "user", Resources.Load<Sprite>("Images/red"), "item02");
-                                break;
+                                break;*/
                             default:
                                 break;
                         }
@@ -142,7 +142,7 @@ public class ObjectActions : MonoBehaviour
 
                     switch (raycastHit.collider.gameObject.name)
                         {
-                            case "monster01(Clone)":
+                            case "ghost(Clone)":
                                 Singleton.Instance.Monster = monster01;
                                 SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
                                 break;

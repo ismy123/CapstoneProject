@@ -88,7 +88,7 @@ public class ObjectActions : MonoBehaviour
                         //toastBackground.enabled = false;                        //아이템 창 나올 땐 토스트 메시지 안나오게 함
                         //text.enabled = false;
 
-                        popup.SetActive(true);
+                        //popup.SetActive(true);
                         //current_marble.SetActive(true);
                         Destroy(raycastHit.collider.gameObject);            //오브젝트 삭제
                     //}
@@ -244,11 +244,6 @@ public class ObjectActions : MonoBehaviour
 
     public void OnClosedClicked()           //확인 버튼 클릭했을 때, 구슬인지 아이템인지 확인하고 해당 창 닫기
     {   
-        if (isMarble)
-            current_marble.SetActive(false);
-        else
-            current_item.SetActive(false);
-
         popup.SetActive(false);
     }
     

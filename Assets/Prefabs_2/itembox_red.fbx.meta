@@ -1,14 +1,12 @@
 fileFormatVersion: 2
-guid: 4cb0b513676f14137b8380f6b12937ce
+guid: 96fba89cdc65d0543857932d83f72d76
 ModelImporter:
   serializedVersion: 26
-  internalIDToNameTable: []
-  externalObjects:
+  internalIDToNameTable:
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Default
-    second: {fileID: 2100000, guid: 04d01e760a89642c8af125db4dc58c41, type: 2}
+      74: -1498010087492872569
+    second: CINEMA_4D_Main
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -92,7 +90,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

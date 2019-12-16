@@ -17,8 +17,8 @@ public class GenerateObjects : MonoBehaviour
     private bool isObjExist;
 
     private int marbleLimit = 10;                            //구슬 기준 걸음 수 40
-    private int itemLimit = 5;
-    private int monsterLimit = 100;
+    private int itemLimit = 35;
+    private int monsterLimit = 25;
 
     [SerializeField]
     private GameObject[] marblePrefabs;                 //구슬 오브젝트
@@ -58,7 +58,7 @@ public class GenerateObjects : MonoBehaviour
         {
             newMarbleStep = currentSteps;
             random = Random.Range(0, 3);                                                //구슬 종류 뽑고
-            Instantiate(marblePrefabs[random], RandomPos(), Quaternion.identity);       //씬에 구슬 생성
+            Instantiate(marblePrefabs[random], RandomPos_marble(), Quaternion.identity);       //씬에 구슬 생성
             Handheld.Vibrate();                                                         //진동으로 구슬 생성 알림
         }
 
@@ -66,7 +66,7 @@ public class GenerateObjects : MonoBehaviour
         {
             newItemStep = currentSteps;
             random = Random.Range(0, 2);
-            Instantiate(itemPrefabs[random], RandomPos(), Quaternion.identity);
+            Instantiate(itemPrefabs[random], RandomPos_marble(), Quaternion.identity);
             Handheld.Vibrate();
         }
 
@@ -99,14 +99,36 @@ public class GenerateObjects : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Singleton.Instance.isWalking == true)
-            tr.RotateAround(targetTr, Vector3.left, rotateSpeed * Time.deltaTime);
+        //if (Singleton.Instance.isWalking == true)
+        //    tr.RotateAround(targetTr, Vector3.left, rotateSpeed * Time.deltaTime);
+
+        marble = GameObject.FindGameObjectsWithTag("marble");
+        item = GameObject.FindGameObjectsWithTag("item");
+        monster = GameObject.FindGameObjectsWithTag("monster");
+
+        objects = marble.Concat(item.Concat(monster).ToArray()).ToArray();
+
+        if(Singleton.Instance.isWalking == true)
+        {
+            foreach (GameObject o in objects)
+                o.transform.RotateAround(targetTr, Vector3.left, rotateSpeed * Time.deltaTime);        //이동
+        }
+
     }
 
     Vector3 RandomPos()                                 //화면 상단의 임의의 위치 잡는다
     {
         randomX = Random.Range(-0.1f, -0.01f);
-        pos = new Vector3(randomX, -0.246f, -1.045f);
+        pos = new Vector3(randomX, -0.267f, 1.147f);
+        //pos = new Vector3(randomX, 0f, 0f);
+        return pos;
+    }
+
+    Vector3 RandomPos_marble()                                 //화면 상단의 임의의 위치 잡는다
+    {
+        randomX = Random.Range(-0.1f, -0.01f);
+        pos = new Vector3(randomX, 0.118f, 0.87f);
+        //pos = new Vector3(randomX, 0.345f, 0f);
         return pos;
     }
 }

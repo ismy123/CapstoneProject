@@ -17,20 +17,20 @@ public class StepManager : MonoBehaviour
 
     public void ClickedButton1()
     {
-        Singleton.Instance.range = 1000;
-        Debug.Log(1000);
+        Singleton.Instance.range = 2000;
+        Debug.Log(2000);
     }
 
     public void ClickedButton2()
     {
-        Singleton.Instance.range = 1500;
-        Debug.Log(1500);
+        Singleton.Instance.range = 3000;
+        Debug.Log(3000);
     }
 
     public void ClickedButton3()
     {
-        Singleton.Instance.range = 2000;
-        Debug.Log(2000);
+        Singleton.Instance.range = 5000;
+        Debug.Log(5000);
     }
 
     public void ClickedButton4()

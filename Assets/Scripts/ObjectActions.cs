@@ -30,23 +30,11 @@ public class ObjectActions : MonoBehaviour
     private void Awake()
     {
         popup = GameObject.Find("Canvas/ObjectPopUpView");
-        current_marble = GameObject.Find("Canvas/marbleImg");
-        current_item = GameObject.Find("Canvas/itemImg");
-        //popup = GameObject.Find("ObjectPopUpView");                             //팝업창
-        //current_marble = GameObject.Find("marbleImg");
-        //current_item = GameObject.Find("itemImg");
 
-        title = GameObject.Find("Canvas/ObjectPopUpView/objectTitle").GetComponent<Text>();            //획득 알림 텍스트
+        //title = GameObject.Find("Canvas/ObjectPopUpView/objectTitle").GetComponent<Text>();            //획득 알림 텍스트
         image = GameObject.Find("Canvas/ObjectPopUpView/earnedObjectImg").GetComponent<Image>();       //획득 오브젝트 이미지
         info = GameObject.Find("Canvas/ObjectPopUpView/currentInfo").GetComponent<Text>();             //사용자 이름(인벤토리 현황)
-
-        num1 = GameObject.Find("Canvas/marbleImg/objImg1/text1").GetComponent<Text>();
-        num2 = GameObject.Find("Canvas/marbleImg/objImg2/text2").GetComponent<Text>();
-        num3 = GameObject.Find("Canvas/marbleImg/objImg3/text3").GetComponent<Text>();
-
-        n1 = GameObject.Find("Canvas/itemImg/objImg1/txt1").GetComponent<Text>();
-        n2 = GameObject.Find("Canvas/itemImg/objImg2/txt2").GetComponent<Text>();
-
+        
         //toastBackground = GameObject.Find("toastBackground").GetComponent<Image>();
         //text = GameObject.Find("toastMsg").GetComponent<Text>();
     }
@@ -55,8 +43,8 @@ public class ObjectActions : MonoBehaviour
     void Start()
     {
         popup.SetActive(false);
-        current_marble.SetActive(false);
-        current_item.SetActive(false);
+        //current_marble.SetActive(false);
+        //current_item.SetActive(false);
 
         /*toastBackground.enabled = false;
         text.enabled = false;*/
@@ -65,7 +53,7 @@ public class ObjectActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((current_item.activeSelf == false && current_marble.activeSelf == false) && Input.GetTouch(0).phase == TouchPhase.Began)         //사용자 터치 감지, 창이 열려있지 않을 때만 실행
+        if (Input.GetTouch(0).phase == TouchPhase.Began)         //사용자 터치 감지, 창이 열려있지 않을 때만 실행
         {
             Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
             RaycastHit raycastHit;
@@ -84,14 +72,14 @@ public class ObjectActions : MonoBehaviour
                     //{
                         switch (raycastHit.collider.gameObject.name)
                         {
-                            case "marble01(Clone)":
-                                SetObject("marble", "파란", "user", Resources.Load<Sprite>("Images/blue"), "marble01");      //값 변경
+                            case "itembox_blue(Clone)":
+                                SetObject("marble", "파란", "user", Resources.Load<Sprite>("Images/marblebox_blue"), "marble01");      //값 변경
                                 break;
-                            case "marble02(Clone)":
-                                SetObject("marble", "노란", "user", Resources.Load<Sprite>("Images/yellow"), "marble02");
+                            case "itembox_green(Clone)":
+                                SetObject("marble", "초록", "user", Resources.Load<Sprite>("Images/marblebox_green"), "marble02");
                                 break;
-                            case "marble03(Clone)":
-                                SetObject("marble", "빨간", "user", Resources.Load<Sprite>("Images/red"), "marble03");
+                            case "itembox_red(Clone)":
+                                SetObject("marble", "빨간", "user", Resources.Load<Sprite>("Images/marblebox_red"), "marble03");
                                 break;
                             default:
                                 break;
@@ -100,8 +88,8 @@ public class ObjectActions : MonoBehaviour
                         //toastBackground.enabled = false;                        //아이템 창 나올 땐 토스트 메시지 안나오게 함
                         //text.enabled = false;
 
-                        popup.SetActive(true);
-                        current_marble.SetActive(true);
+                        //popup.SetActive(true);
+                        //current_marble.SetActive(true);
                         Destroy(raycastHit.collider.gameObject);            //오브젝트 삭제
                     //}
                 }
@@ -118,7 +106,7 @@ public class ObjectActions : MonoBehaviour
                         switch (raycastHit.collider.gameObject.name)
                         {
                             case "itembox(Clone)":
-                                SetObject("", "물약", "user", Resources.Load<Sprite>("Images/blue"), "item01");  //값 변경
+                                SetObject("", "물약", "user", Resources.Load<Sprite>("Images/marblebox_blue"), "item01");  //값 변경
                                 break;
                             /*case "item02(Clone)":
                                 SetObject("", "쉴드", "user", Resources.Load<Sprite>("Images/red"), "item02");
@@ -131,7 +119,7 @@ public class ObjectActions : MonoBehaviour
                         //text.enabled = false;
 
                         popup.SetActive(true);
-                        current_item.SetActive(true);
+                        //current_item.SetActive(true);
                         Destroy(raycastHit.collider.gameObject);              //오브젝트 삭제
                     //}
                 }
@@ -142,7 +130,7 @@ public class ObjectActions : MonoBehaviour
 
                     switch (raycastHit.collider.gameObject.name)
                         {
-                            case "ghost(Clone)":
+                            case "ghost1(Clone)":
                                 Singleton.Instance.Monster = monster01;
                                 SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
                                 break;
@@ -175,17 +163,15 @@ public class ObjectActions : MonoBehaviour
     {
         if(tag == "marble")                                                         //구슬 수정 창
         {
-            title.text = str + "색 구슬을 획득했습니다.";
-            info.text = "현재 " + name + "님의 구슬수입니다.";
+            info.text = str + "구슬을 얻었습니다!";
             image.sprite = img;
             StartCoroutine(GetMarbleCount(obj));                //받은 구슬 수++ && 구슬 정보 가져옴
         }
         else
         {
-            if (str == "물약") { title.text = str + "을 획득했습니다."; }
-            else { title.text = str + "를 획득했습니다."; }
-
-            info.text = "현재 " + name + "님의 아이템 현황입니다.";
+            if (str == "물약") { info.text = str + "을 얻었습니다!"; }
+            else { info.text = str + "를 얻었습니다!"; }
+            
             image.sprite = img;
             StartCoroutine(GetItemCount(obj));                   //받은 아이템 수++ && 아이템 정보 가져옴
         }
@@ -258,11 +244,6 @@ public class ObjectActions : MonoBehaviour
 
     public void OnClosedClicked()           //확인 버튼 클릭했을 때, 구슬인지 아이템인지 확인하고 해당 창 닫기
     {   
-        if (isMarble)
-            current_marble.SetActive(false);
-        else
-            current_item.SetActive(false);
-
         popup.SetActive(false);
     }
     

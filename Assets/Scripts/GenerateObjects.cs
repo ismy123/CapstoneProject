@@ -58,7 +58,7 @@ public class GenerateObjects : MonoBehaviour
         {
             newMarbleStep = currentSteps;
             random = Random.Range(0, 3);                                                //구슬 종류 뽑고
-            Instantiate(marblePrefabs[random], RandomPos_marble(), Quaternion.identity);       //씬에 구슬 생성
+            Instantiate(marblePrefabs[random], RandomPos_marble(), transform.rotation * Quaternion.Euler(0f, 180f, 0f));       //씬에 구슬 생성
             Handheld.Vibrate();                                                         //진동으로 구슬 생성 알림
         }
 
@@ -66,7 +66,7 @@ public class GenerateObjects : MonoBehaviour
         {
             newItemStep = currentSteps;
             random = Random.Range(0, 2);
-            Instantiate(itemPrefabs[random], RandomPos_marble(), Quaternion.identity);
+            Instantiate(itemPrefabs[random], RandomPos_marble(), transform.rotation * Quaternion.Euler(0f, 180f, 0f));
             Handheld.Vibrate();
         }
 
@@ -74,7 +74,7 @@ public class GenerateObjects : MonoBehaviour
         {
             newMonsterStep = currentSteps;
             random = Random.Range(0, 5);
-            Instantiate(monsterPrefabs[random], RandomPos(), Quaternion.identity);
+            Instantiate(monsterPrefabs[random], RandomPos(), transform.rotation * Quaternion.Euler(0f, 180f, 0f));
             Handheld.Vibrate();
         }
     }
@@ -118,16 +118,16 @@ public class GenerateObjects : MonoBehaviour
 
     Vector3 RandomPos()                                 //화면 상단의 임의의 위치 잡는다
     {
-        randomX = Random.Range(-0.1f, -0.01f);
-        pos = new Vector3(randomX, -0.267f, 1.147f);
+        randomX = Random.Range(0.005f, 0.15f);
+        pos = new Vector3(randomX, -0.2884f, 1.0232f);
         //pos = new Vector3(randomX, 0f, 0f);
         return pos;
     }
 
     Vector3 RandomPos_marble()                                 //화면 상단의 임의의 위치 잡는다
     {
-        randomX = Random.Range(-0.1f, -0.01f);
-        pos = new Vector3(randomX, 0.118f, 0.87f);
+        randomX = Random.Range(-0.05f, 0.07f);
+        pos = new Vector3(randomX, 0.135f, 0.853f);
         //pos = new Vector3(randomX, 0.345f, 0f);
         return pos;
     }

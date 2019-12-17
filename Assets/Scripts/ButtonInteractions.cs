@@ -7,6 +7,6 @@ public class ButtonInteractions : MonoBehaviour
 {
     public void OnCloseClicked()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Scene00_Main");
     }
 }

@@ -19,24 +19,28 @@ public class StepManager : MonoBehaviour
     {
         Singleton.Instance.range = 2000;
         Debug.Log(2000);
+        Singleton.Instance.panel = false;
     }
 
     public void ClickedButton2()
     {
         Singleton.Instance.range = 3000;
         Debug.Log(3000);
+        Singleton.Instance.panel = false;
     }
 
     public void ClickedButton3()
     {
         Singleton.Instance.range = 5000;
         Debug.Log(5000);
+        Singleton.Instance.panel = false;
     }
 
     public void ClickedButton4()
     {
         Singleton.Instance.range = 00;
         Debug.Log(00);
+        Singleton.Instance.panel = false;
     }
 }
 

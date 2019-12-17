@@ -29,4 +29,6 @@ public class Singleton // 모든 곳에서 사용할 수 있게 하는 스크립
    public bool isWalking = false;//걷는지 안걷는지를 체크
 
    public GameObject Monster;
+
+   public bool panel = true;
 }

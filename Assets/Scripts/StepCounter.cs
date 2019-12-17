@@ -44,7 +44,7 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
 
     void Update()
     {
-        StepCount.text = "Steps: " + Singleton.Instance.step + " / " + Singleton.Instance.range ; // 싱글톤쓸때 이런식으로 쓰면 됌
+        StepCount.text = Singleton.Instance.step + " / " + Singleton.Instance.range ; // 싱글톤쓸때 이런식으로 쓰면 됌
 
         UpdateElapsedWalkingTime(); // Updates the time you spend while walking.
         WalkingCheck(); // Checks if you are walking or not.

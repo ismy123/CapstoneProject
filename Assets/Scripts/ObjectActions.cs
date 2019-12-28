@@ -18,11 +18,7 @@ public class ObjectActions : MonoBehaviour
     private Text title, info, num1, num2, num3, n1, n2;
     private Image image;
     private bool isMarble;                  //클릭한 오브젝트가 구슬인지 아이템인지 정보 저장
-    private GameObject monster01;
-    private GameObject monster02;
-    private GameObject monster03;
-    private GameObject monster04;
-    private GameObject monster05;
+    private GameObject monster01, monster02, monster03, monster04, monster05;
 
     private Image toastBackground;
     private Text text;

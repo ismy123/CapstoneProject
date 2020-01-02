@@ -21,27 +21,27 @@ public class MonsterAR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Singleton.Instance.Monster = 1)
+        if (Singleton.Instance.Monster == 1)
         {
             monster = monster01;
         }
 
-        else if (Singleton.Instance.Monster = 2)
+        else if (Singleton.Instance.Monster == 2)
         {
             monster = monster02;
         }
 
-        else if (Singleton.Instance.Monster = 3)
+        else if (Singleton.Instance.Monster == 3)
         {
             monster = monster03;
         }
 
-        else if (Singleton.Instance.Monster = 4)
+        else if (Singleton.Instance.Monster == 4)
         {
             monster = monster04;
         }
 
-        else if (Singleton.Instance.Monster = 5)
+        else if (Singleton.Instance.Monster == 5)
         {
             monster = monster05;
         }

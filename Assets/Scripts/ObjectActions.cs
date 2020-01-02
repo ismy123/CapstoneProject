@@ -126,24 +126,24 @@ public class ObjectActions : MonoBehaviour
 
                     switch (raycastHit.collider.gameObject.name)
                         {
-                            case "ghost1(Clone)":
-                                Singleton.Instance.Monster = monster01;
+                            case "monster01(Clone)":
+                                Singleton.Instance.Monster = 1;
                                 SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
                                 break;
                             case "monster02(Clone)":
-                                Singleton.Instance.Monster = monster02;
+                                Singleton.Instance.Monster = 2;
                                 SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
                                 break;
                             case "monster03(Clone)":
-                                Singleton.Instance.Monster = monster03;
+                                Singleton.Instance.Monster = 3;
                                 SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
                                 break;
                             case "monster04(Clone)":
-                                Singleton.Instance.Monster = monster04;
+                                Singleton.Instance.Monster = 4;
                                 SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
                                 break;
                             case "monster05(Clone)":
-                                Singleton.Instance.Monster = monster05;
+                                Singleton.Instance.Monster = 5;
                                 SceneManager.LoadScene("Scene01_MonsterAR");//씬 전환
                                 break;
                             default:

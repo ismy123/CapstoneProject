@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿/*
+사용자가 걸을 때 길이 돌아가게 함
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class RoadGen : MonoBehaviour // 끝없는 길 만들기
+public class RoadGen : MonoBehaviour
 {
 
     public Transform startPos; // 길의 위치를 알아서 자연스럽게 이어지게 함
@@ -36,14 +39,7 @@ public class RoadGen : MonoBehaviour // 끝없는 길 만들기
 
         if (Singleton.Instance.isWalking == true) // 사용자가 움직이면 길도 움직이게 하기
         {
-                // transform.position = new Vector3(0,0,-100.0f);//프레임마다 등속으로 다가오기
-
                 moveDir = new Vector3(0, 0, -5);
-                //moveDir *= speed;
-                //moveDir *= Time.deltaTime;
-
-                //foreach(GameObject r in roads)
-                //r.transform.Translate(moveDir, Space.World);
         }
         else
         {
@@ -54,7 +50,6 @@ public class RoadGen : MonoBehaviour // 끝없는 길 만들기
     void addroad()
     {
         nextStep = nextStep + 5;
-        // newRoad = Instantiate(PrefabsRoad[Random.Range(0, 3)], new Vector3(startPos.position.x, startPos.position.y, transform.position.z + nextStep * 2), Quaternion.identity) as GameObject; // 길 생성
         newRoad = Instantiate(PrefabsRoad[Random.Range(0, 3)], new Vector3(startPos.position.x, startPos.position.y, transform.position.z + nextStep * 2), Quaternion.identity) as GameObject; // 길 생성
     }
 }

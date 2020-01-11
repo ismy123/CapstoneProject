@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿/*
+사용자의 움직임을 인식하여 걸음수가 올라가도록 함
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -26,13 +29,6 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
     public float timeElapsedStandingStill = 0F;
     private bool startWaitCounter = false;
 
-    void Start()
-    {
-       
-    }
-
-
-
     void Awake()
     {
         averageAcceleration = Input.acceleration.magnitude; // Initialize average filter.
@@ -48,16 +44,6 @@ public class StepCounter : MonoBehaviour // 걷는 것 카운트 하는 스크�
 
         UpdateElapsedWalkingTime(); // Updates the time you spend while walking.
         WalkingCheck(); // Checks if you are walking or not.
-
-        if (Singleton.Instance.isWalking == true)
-        {
-            
-        }
-
-        else if (Singleton.Instance.isWalking == false)
-        {
-            
-        }
     }
 
     void FixedUpdate()

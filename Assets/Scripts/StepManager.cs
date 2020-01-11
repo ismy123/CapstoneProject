@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+사용자에게 걸음수를 선택받음
+선택받은 걸음수를 싱글톤안에 넣음
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,10 +14,6 @@ public class StepManager : MonoBehaviour
     public Button Range3Btn;
     public Button NoRangeBtn;
 
-    void Start()
-    {
-        
-    }
 
     public void ClickedButton1()
     {
